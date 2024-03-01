@@ -6,8 +6,8 @@ router.get('/allbooks', (req, res)=>{
 })
 
 router.post('/register', (req,res)=>{
-    const title = req.body.title
-    console.log(title)
+    const book = req.body
+    console.log(book)
 })
 
 module.exports = router
