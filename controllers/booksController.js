@@ -1,7 +1,17 @@
 const Books = require("../models/books")
 const { validationResult } = require("express-validator")
 
-
+exports.getAllBooks = (req, res, next) =>{
+    Books.find()
+    .then(result=>{
+        res.status(200).json({
+            books: result
+        })
+    })
+    .catch(error =>{
+        console.log(error)
+    })
+}
 
 exports.createStock = (req, res, next) => {
 
@@ -14,7 +24,6 @@ exports.createStock = (req, res, next) => {
             message: errors.array()[0].msg
         })
     }
-
     
     const title = req.body.title
     const author = req.body.author
@@ -54,6 +63,23 @@ exports.createStock = (req, res, next) => {
     }
     }
     
+    exports.updateBook = (req, res, next) =>{
+        const bookId = req.params.bookID
+        console.log(bookId)
+        res.status(200).json({
+            msg: "Livro atualizado com sucesso!",
+            book: bookId
+        });
+    }
+
+    exports.deleteBook = (req, res, next) =>{
+        const bookId = req.params.bookID
+        console.log(bookId)
+        res.status(200).json({
+            msg: "Livro excluido com sucesso!",
+            book: bookId
+        });
+    }
    
   
 

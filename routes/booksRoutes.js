@@ -4,17 +4,9 @@ const router = express.Router()
 const booksController = require("../controllers/booksController")
 
 const { check, body } = require("express-validator")
-const {
-    validateTitle,
-    validateAuthor,
-    validateGender,
-    validatePublisher,
-    validatePages,
-    validateStockQ } = require("../services/validators")
+const { validateTitle, validateAuthor, validateGender, validatePublisher, validatePages, validateStockQ } = require("../services/validators")
 
-router.get('/allbooks', (req, res) => {
-    res.send("Todos os livros")
-})
+router.get('/allbooks', booksController.getAllBooks)
 
 router.post('/register', [
     validateTitle,
@@ -24,5 +16,8 @@ router.post('/register', [
     validatePages,
     validateStockQ
 ], booksController.createStock)
+
+router.patch('/book:bookID', booksController.updateBook)
+router.delete('/book:bookID', booksController.deleteBook)
 
 module.exports = router

@@ -1,5 +1,6 @@
 const { check } = require("express-validator")
 
+//validações para que ao menos 1 caractere seja inserido
 module.exports = {
     validateTitle: check("title").isLength({ min: 1 })
         .withMessage("Insira um título válido"),
@@ -13,5 +14,4 @@ module.exports = {
         .withMessage("Insira um numero de páginas válido"),
     validateStockQ: check("stockQuantity").isLength({ min: 1 })
         .withMessage("Insira uma quantidade de estoque válido"),
-
 }

@@ -26,7 +26,7 @@ app.use((req, res, next) => {
 //middleware utilizar as rotas
 app.use("/books", routeBooks);
 
-
+//conexão com o database local 
 mongoose.connect("mongodb://localhost:27017/bookStock")
 .then(result=>{
     app.listen(port, () => {
