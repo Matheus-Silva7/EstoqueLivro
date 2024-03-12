@@ -1,17 +1,17 @@
-//chamando express e a porta
+// Chamando express e a porta
 const express = require("express");
 const app = express();
 const port = 3030;
 
-//rotas
+// Rotas
 const routeBooks = require("./routes/booksRoutes");
+const routeUser = require("./routes/userRoutes");
 
-//middleware receber json
+// Middleware para receber JSON
 app.use(express.json());
 
-//conexao mongodb
+// Conexão MongoDB
 const mongoose = require("mongoose");
-const { db } = require("./models/books");
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -23,18 +23,19 @@ app.use((req, res, next) => {
   next();
 });
 
-//middleware utilizar as rotas
-app.use("/books", routeBooks);
+// Middleware para utilizar as rotas
+app.use("/books",routeBooks);
+app.use("/auth", routeUser);
 
-//conexão com o database local 
-mongoose.connect("mongodb://localhost:27017/bookStock")
-.then(result=>{
+
+// Conexão com o banco de dados local
+mongoose
+  .connect("mongodb://127.0.0.1:27017/bookStock")
+  .then((result) => {
     app.listen(port, () => {
-        console.log("servidor online, porta:" + port);
-      });
-})
-.catch(error=>{
-    console.log(error)
-})
-
-
+      console.log("Servidor online, porta:" + port);
+    });
+  })
+  .catch((error) => {
+    console.log(error);
+  });

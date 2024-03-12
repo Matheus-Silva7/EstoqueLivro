@@ -6,6 +6,7 @@ const booksController = require("../controllers/booksController")
 const { check, body } = require("express-validator")
 const { validateTitle, validateAuthor, validateGender, validatePublisher, validatePages, validateStockQ } = require("../services/validators")
 
+
 router.get('/allbooks', booksController.getAllBooks)
 
 router.post('/register', [
@@ -14,7 +15,7 @@ router.post('/register', [
     validateGender,
     validatePublisher,
     validatePages,
-    validateStockQ
+    validateStockQ,
 ], booksController.createStock)
 
 router.patch('/book:bookID', booksController.updateBook)

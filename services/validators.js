@@ -1,4 +1,5 @@
 const { check } = require("express-validator")
+const User = require("../models/user.js")
 
 //validações para que ao menos 1 caractere seja inserido
 module.exports = {
@@ -14,4 +15,14 @@ module.exports = {
         .withMessage("Insira um numero de páginas válido"),
     validateStockQ: check("stockQuantity").isLength({ min: 1 })
         .withMessage("Insira uma quantidade de estoque válido"),
+        validateEmail: check("email")
+        .isEmail()
+        .withMessage("Digite um email válido!"),
+    validatePassword: check("password")
+        .isLength({ min: 8 })
+        .withMessage("A senha precisa de pelo menos 8 caracters!"),
+
+    validateName: check("name")
+        .isLength({ min: 5 })
+        .withMessage("O nome precisa de pelo menos 5 caracters!")
 }
