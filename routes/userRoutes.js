@@ -5,7 +5,7 @@ const auth = require("../controllers/userController");
 
 const { validateEmail, validateName, validatePassword } = require("../services/validators");
 
-router.post('/singup', [validateEmail, validateName, validatePassword], auth.signUpUser);
-router.post('/singin', [validateEmail, validatePassword], auth.signInUser);
+router.post('/signup', [validateEmail, validateName, validatePassword], auth.signUpUser);
+router.post('/signin', [validateEmail, validatePassword], auth.signInUser);
 
 module.exports = router;

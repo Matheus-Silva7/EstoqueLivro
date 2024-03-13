@@ -40,10 +40,8 @@ exports.createStock = (req, res, next) => {
             gender: gender,
             publisher: publisher,
             pages: pages,
-            stockQuantity: stockQuantity
+            stockQuantity: stockQuantity, 
         })
-    
-    
     
         stock.save()
             .then(result => {
